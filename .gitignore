@@ -1,0 +1,5 @@
+# Lock file of template project
+day-00/Cargo.lock
+
+# Binaries
+**/target
