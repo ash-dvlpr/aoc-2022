@@ -1,7 +1,6 @@
-use std::fs;
 use day_00::*;
 
 fn main() {
-    let file = fs::read_to_string("./input2.txt").unwrap();
-    process_part2(&file);
+    let lines = extract_lines("./input2.txt");
+    process_part1(lines);
 }
