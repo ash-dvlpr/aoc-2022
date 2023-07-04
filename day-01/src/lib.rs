@@ -8,17 +8,21 @@ pub fn process_part1(lines: &[String]) {
     let calories = calculate_elves_calories(&elves);
 
     // Find the biggest calorie count (Result)
-    println!("{}", calories.iter().max().unwrap());
+    let c = calories.iter().max().unwrap();
+    println!("{c}");
 }
 
-pub fn process_part2(lines: Rc<[String]>) {
+pub fn process_part2(lines: &[String]) {
     // Separate the lines into groups by elf
     let elves = separate_elves_lines(&lines);
 
     // Sum all the calories of each elf
-    let calories = calculate_elves_calories(&elves);
+    let mut calories = calculate_elves_calories(&elves);
 
-    todo!("Process Input of Part 2");
+    // Find the 3 biggest calorie counts (Result) and add them together
+    calories.sort(); calories.reverse();
+    let c = calories.iter().take(3).sum::<i64>();
+    println!("{c}");
 }
 
 // =============== Common Code ===============
@@ -32,7 +36,7 @@ pub fn extract_lines(file_path: &str) -> Rc<[String]> {
     Rc::from(lines)
 }
 
-fn separate_elves_lines<'a>(lines: &'a[String]) -> Vec<&'a [String]> {
+fn separate_elves_lines<'a>(lines: &'a [String]) -> Vec<&'a [String]> {
     // Every group of succesive lines are all lines from a single elf.
     // If there's an empty line, there was a double line break.
     // Find those breaks, and use them to create slices.
@@ -74,11 +78,9 @@ fn calculate_elves_calories(elves: &[&[String]]) -> Vec<i64> {
         .iter()
         .map(|elf| {
             elf.iter()
-                // Convert to integers
+                // Convert to integers and sum
                 .map(|l| l.parse::<i64>().unwrap())
-                // Reduce by adition
-                .reduce(|a, b| a + b)
-                .unwrap()
+                .sum::<i64>()
         })
         .collect::<Vec<_>>()
 }
