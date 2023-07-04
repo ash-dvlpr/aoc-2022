@@ -5,3 +5,4 @@ My solutions for the Advent Of Code of 2022. Each folder is it's own rust cargo 
 ___
 
 - [`Day 01`](https://adventofcode.com/2022/day/1)  => [Solution](/day-01/)
+- [`Day 02`](https://adventofcode.com/2022/day/2)  => [Solution](/day-02/)
